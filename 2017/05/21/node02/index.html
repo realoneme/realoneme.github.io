@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="John Doe"><link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>一点一点学node-02————基础知识 - Hexo</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script><!-- Hotjar Tracking Code for ochukai.me --></head><body style="opacity:0;"><header class="head"><h1 class="head-title u-fl"><a href="/">Hexo</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head">  <time class="post__time" datetime="2017-05-21T11:48:40.509Z">May 21, 2017</time><h1 class="post__title"><a href="/2017/05/21/node02/">一点一点学node-02————基础知识</a></h1><div class="post__main echo"><p>&gt;</p>
+<h2 id="module模块"><a href="#module模块" class="headerlink" title="module模块"></a>module模块</h2><h3 id="五个特殊形参-params"><a href="#五个特殊形参-params" class="headerlink" title="五个特殊形参 params"></a>五个特殊形参 params</h3><ul>
+<li><p>node是基于commonjs规范的</p>
+<ol>
+<li>如何使用模块。require使用模块。require方法是同步的。如果有callback的都是异步方法<ul>
+<li>文件模块。引用时，需要相对路径引用 ‘./ ../‘</li>
+<li>第三方模块 写模块名即可，不需要指出路径</li>
+<li>核心（内置）模块</li>
+</ul>
+</li>
+<li>如何定义模块。在node中，一个js文件就是一个js模块</li>
+<li><p>如何导出模块。</p>
+<ul>
+<li>exports(如果使用exports导出，必须通过属性添加，否则无法挂载在module.exports上)—&gt; module.exports=exports={}</li>
+<li>module.exports(因为返回的是module.exports，所以可以直接改变module.exports的指针)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(function () &#123;</div><div class="line">    // module.exports = this;</div><div class="line">    module.exports = exports = &#123;&#125;;</div><div class="line">    return module.exports</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>多次require不会多次导入，默认会缓存到require.cache这个对象里</p>
+</li>
+</ul>
+<h4 id="第三方模块"><a href="#第三方模块" class="headerlink" title="第三方模块"></a>第三方模块</h4><p>都会安在node_modules文件夹下</p>
+<h5 id="全局第三方模块"><a href="#全局第三方模块" class="headerlink" title="全局第三方模块"></a>全局第三方模块</h5><p>全局第三方模块：加了-g只能在命令行里使用</p>
+<h5 id="本地第三方模块"><a href="#本地第三方模块" class="headerlink" title="本地第三方模块"></a>本地第三方模块</h5><p><strong>在当前文件夹（当前项目）下使用</strong></p>
+<ul>
+<li>开发依赖 –save-dev/ -D</li>
+<li>发布依赖 –save/ -S</li>
+<li>初始化 npm init/npm init -y(自动确认)(如果外层文件有node_modules会安装到上层文件夹)<ul>
+<li>初始化时不能有汉字，特殊符号，而且也不能和要下载的模块重名</li>
+<li>json里不可以有注释</li>
+</ul>
+</li>
+<li>卸载模块 npm uninstall –save/–save-dev 会把package依赖里也删除</li>
+<li>发布包（多个模块组成一个包）<ul>
+<li><code>npm addUser</code>注册或者登录</li>
+<li><code>npm whoami</code>查看是否登录</li>
+<li><code>npm publish</code></li>
+</ul>
+</li>
+<li>第三方模块会到当前目录下找node_modules，找名字和引用模块同名的文件夹，再找到package.json，找到入口文件，将其执行。<br>如果当前目录下没有找到node_modules，会到上级目录继续查找，找到根路径为止，找不到就报错。<h4 id="核心模块（node自带的模块-fs-http-url…）"><a href="#核心模块（node自带的模块-fs-http-url…）" class="headerlink" title="核心模块（node自带的模块 fs http url…）"></a>核心模块（node自带的模块 fs http url…）</h4><h5 id="util-node自带的工具包，继承inherits"><a href="#util-node自带的工具包，继承inherits" class="headerlink" title="util node自带的工具包，继承inherits"></a>util node自带的工具包，继承inherits</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">let util = require(&apos;util&apos;);</div><div class="line">function Parent() &#123;</div><div class="line">    this.cardId = &apos;xxx1111&apos;;</div><div class="line">&#125;</div><div class="line">Parent.prototype.eat = function () &#123;</div><div class="line">    console.log(&apos;eat&apos;)</div><div class="line">&#125;;</div><div class="line">function Child() &#123;&#125;</div><div class="line">util.inherits(Child,Parent)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="events-node自带一个事件库"><a href="#events-node自带一个事件库" class="headerlink" title="events node自带一个事件库"></a>events node自带一个事件库</h5><p>发布订阅最常见的两个方法：</p>
+<ul>
+<li>on</li>
+<li>emit</li>
+<li>removeListener<br><strong>还有其他一些方法</strong></li>
+<li>once–只执行一次</li>
+<li>removeAllListeners–移除所有事件</li>
+</ul>
+</div></header></article><section class="reward"> <a class="btn-reward" href="#">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png"></div></section></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2016-2017 John Doe</div><menu class="page-menu u-fr"><li class="page-menu__item"><a class="page-menu__link icon-arrow-left" title="Previous" href="/2017/05/21/npmbao/"></a></li><li class="page-menu__item"><a class="page-menu__link icon-arrow-right" title="Next" href="/2017/05/21/node01/"></a></li></menu></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

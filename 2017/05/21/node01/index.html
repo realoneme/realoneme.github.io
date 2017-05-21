@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="John Doe"><link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>一点一点学node-01————基础知识 - Hexo</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script><!-- Hotjar Tracking Code for ochukai.me --></head><body style="opacity:0;"><header class="head"><h1 class="head-title u-fl"><a href="/">Hexo</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head">  <time class="post__time" datetime="2017-05-21T11:45:20.892Z">May 21, 2017</time><h1 class="post__title"><a href="/2017/05/21/node01/">一点一点学node-01————基础知识</a></h1><div class="post__main echo"><blockquote>
+<p>作为一个只知道前端知识的文科跨行妹纸，怀着我细腻的心，我觉得一定一定还有很多小白和我一样，<br>想学node，文档却看到一半看不懂。那么咱们就一起开始吧。就算成不了大神，也不能啥也不会，是不~~</p>
+</blockquote>
+<h2 id="node基础知识-01"><a href="#node基础知识-01" class="headerlink" title="node基础知识 01"></a>node基础知识 01</h2><p><strong>来一起敲敲代码，看看console里能输出些个啥？&lt;(￣︶￣)&gt;</strong></p>
+<h3 id="安装node"><a href="#安装node" class="headerlink" title="安装node"></a>安装node</h3><p>去这里下载最新版本咯！如果是学习的话，最新版可以支持更多的功能，有利于练习哦！<br>戳这里-&gt; <a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a></p>
+<p>DOCS里有很多API的用法哦，如果英文不好的话，就去中文网学习吧！戳这里 –&gt;<a href="http://nodejs.cn/" target="_blank" rel="external">http://nodejs.cn/</a></p>
+<p>如果在安装的时候没有选择全局执行，辣么，就继续往下看吧！</p>
+<h3 id="后悔药一颗：如何配置环境变量？╰-￣▽￣-╭"><a href="#后悔药一颗：如何配置环境变量？╰-￣▽￣-╭" class="headerlink" title="后悔药一颗：如何配置环境变量？╰(￣▽￣)╭"></a>后悔药一颗：如何配置环境变量？╰(￣▽￣)╭</h3><h4 id="node可以在命令行下执行的原因："><a href="#node可以在命令行下执行的原因：" class="headerlink" title="node可以在命令行下执行的原因："></a>node可以在命令行下执行的原因：</h4><p>因为安装的时候，将可执行文件配置到了环境变量下。可是手残的我们，要怎么拯救无能的cmd框框呢。<br>此电脑（右键）-&gt;属性-&gt;高级系统设置-&gt;环境变量（右下角）-&gt;在【系统变量】里找到Path，温柔地双击它-&gt;右边第一个【新建】按钮-&gt;把你的node的执行文件路径粘上去，这就拯救了手残的你！</p>
+<h3 id="node是什么？node是服务端运行js的环境"><a href="#node是什么？node是服务端运行js的环境" class="headerlink" title="node是什么？node是服务端运行js的环境"></a>node是什么？node是服务端运行js的环境</h3><p>可以让js跑在服务端里，操作文件系统，模块，包，操作系统API</p>
+<h2 id="说node之前再聊点时尚的：前端模块化"><a href="#说node之前再聊点时尚的：前端模块化" class="headerlink" title="说node之前再聊点时尚的：前端模块化"></a>说node之前再聊点时尚的：前端模块化</h2><p>要怎么进行模块化开发呢？以下几种方式都可以达到。</p>
+<ul>
+<li>闭包</li>
+<li>单例模式（不能解决命名冲突，调用时代码过长）</li>
+<li>requirejs(AMD)依赖前置  seajs(CMD)就近依赖，需要的时候再引进来这个模块</li>
+<li>commonjs规范，node模块的实现</li>
+</ul>
+<h2 id="再说回node：node有什么特点？"><a href="#再说回node：node有什么特点？" class="headerlink" title="再说回node：node有什么特点？"></a>再说回node：node有什么特点？</h2><ul>
+<li>异步IO（定时器，回调函数都是异步）</li>
+<li>单线程（JS的特性，node也是JS啊这是祖上留下来的本性）<br>（插一句：看起来好厉害的<em>多线程</em>实现是怎么实现的？切换执行上下文，因为执行速度很快，所以感觉再做很多件事情）</li>
+<li>node一个进程只能开一个线程。（进程包含线程）。</li>
+</ul>
+<p>所以总的来说，node就是一个可以异步输入输出的，一次只能干一件事情，但是有着备忘录的，而且一定会做完手头的事情之后，按照备忘录上记录着日程安排去做事的棒小伙儿！（什么什么，你说为什么不是姑娘？那么重的活儿你舍得让姑娘做吗？恩？）</p>
+<h2 id="事件环"><a href="#事件环" class="headerlink" title="事件环"></a>事件环</h2><ul>
+<li>靠事件驱动（当前的事件和之后的事件）<br>也就是说，小本本上的事儿干完了，就结束进程可以睡觉了！</li>
+</ul>
+<h2 id="既然node在服务端运行，那它的全局对象是だれ（谁）？"><a href="#既然node在服务端运行，那它的全局对象是だれ（谁）？" class="headerlink" title="既然node在服务端运行，那它的全局对象是だれ（谁）？"></a>既然node在服务端运行，那它的全局对象是だれ（谁）？</h2><p>前端的全局变量是window，服务端的是全局对象，是<strong>global</strong><br>在当前文件夹下可以直接使用的，都是全局对象<br>例如：<code>console</code></p>
+<h3 id="全局对象global家的七大姑八大姨"><a href="#全局对象global家的七大姑八大姨" class="headerlink" title="全局对象global家的七大姑八大姨"></a>全局对象global家的七大姑八大姨</h3><p>哎呦，那么多亲戚，总有几个走得近的。那么就找几个经常串门儿的亲戚来介绍吧！</p>
+<p><strong>global上的属性，和五个特殊的形参。</strong></p>
+<p><em>node的世界中没有window属性</em><br><em>node中的this是{}。</em></p>
+<ul>
+<li>var 不能直接将内容挂载在global上，</li>
+<li>没有var声明的，会挂载在global上。</li>
+</ul>
+<blockquote>
+<ul>
+<li>Buffer</li>
+<li>process</li>
+<li>clearImmediate: [Function], 清除立即</li>
+<li>clearInterval: [Function],</li>
+<li>clearTimeout: [Function],</li>
+<li>setImmediate: [Function],</li>
+<li>setInterval: [Function],</li>
+<li>setTimeout: [Function],(传参从第三个参数开始)</li>
+<li>console: [Getter] } log info dir error warn time timeEnd-&gt;这些方法都有</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//setTimeout</div><div class="line">function eat(p1,p2) &#123;</div><div class="line">    console.log(p1, p2);</div><div class="line">&#125;</div><div class="line">setTimeout(eat,1000,&apos;banana&apos;,&apos;apple&apos;);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//console time timeEnd可以计算时间差</div><div class="line">console.time(&apos;start&apos;)//开始计时！这里是start下面也得用start哦！</div><div class="line">for(let i = 0;i&lt;100000;i++)&#123;</div><div class="line">&#125;//两次计时之间要干的事儿。</div><div class="line">console.timeEnd(&apos;start&apos;);//计时结束！</div><div class="line">//会给出两次打印的时差，以及打印的名字得一样。</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">setImmediate(function()&#123;</div><div class="line">    //立即执行，不支持设置延迟时间，在不需要规定时间的时候，使用setImmediate</div><div class="line">    //执行时间&lt;=setTimeout</div><div class="line">    //是node的专属属性</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h4 id="process进程"><a href="#process进程" class="headerlink" title="process进程"></a><strong>process进程</strong></h4><ul>
+<li>几个常用方法<ul>
+<li>process.exit();//结束进程–exit code 0</li>
+<li>process.kill(process.pid);//杀死进程 –exit code 1<br>cmd查看这个端口被哪个进程占用，可以找到进程号，kill掉就可以了<br><code>netstat -anto | findstr &quot;5050&quot;</code></li>
+</ul>
+</li>
+</ul>
+<p>1 . 区分开发环境和上线环境<br>在电脑上设置变量 process.env代表当前进程的环境变量<br>set NODE_EVN=development<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if(process.env.NODE_N === &apos;development&apos;)&#123;</div><div class="line">    console.log(&apos;开发环境&apos;);</div><div class="line">&#125;else&#123;</div><div class="line">    console.log(&apos;线上环境&apos;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>2 . process.nextTick 下个队列<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">setImmediate(function () &#123;</div><div class="line">    console.log(&apos;比nextTick慢&apos;)</div><div class="line">&#125;);</div><div class="line">process.nextTick(function () &#123;</div><div class="line">    console.log(&apos;nextTick永远比setImmediate要快，重要的事情要放在nextTick中&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+</div></header></article><section class="reward"> <a class="btn-reward" href="#">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png"></div></section></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2016-2017 John Doe</div><menu class="page-menu u-fr"><li class="page-menu__item"><a class="page-menu__link icon-arrow-left" title="Previous" href="/2017/05/21/node02/"></a></li><li class="page-menu__item"><a class="page-menu__link icon-arrow-right" title="Next" href="/2017/05/21/gitcommand/"></a></li></menu></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
