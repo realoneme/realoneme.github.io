@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/16/arrayindex/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="正在安静的撸码，PHP老公突然Q我，问，“你们JS里数组能用非数字下标吗。” 并没有仔细思考的我，扔给他一句，“不行，闹呢，2的32次方都不够使了么。” 然而，事情并没有如我所料的结束，片刻之后，他滴滴我，说“你个大混子，这是可以的。”然后扔给我一个截图。 JS的Array是可以有非数字下标的，就是有些行为怪异。你说这人非要用PHP什么的东西往JS里套，还来麻烦我，我能怎么办，我也很绝望啊。控制台">
-<meta property="og:updated_time" content="2017-06-16T10:23:46.424Z">
+<meta property="og:updated_time" content="2017-06-16T10:25:00.589Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS数组的数字和非数字下标">
 <meta name="twitter:description" content="正在安静的撸码，PHP老公突然Q我，问，“你们JS里数组能用非数字下标吗。” 并没有仔细思考的我，扔给他一句，“不行，闹呢，2的32次方都不够使了么。” 然而，事情并没有如我所料的结束，片刻之后，他滴滴我，说“你个大混子，这是可以的。”然后扔给我一个截图。 JS的Array是可以有非数字下标的，就是有些行为怪异。你说这人非要用PHP什么的东西往JS里套，还来麻烦我，我能怎么办，我也很绝望啊。控制台">
@@ -164,7 +164,7 @@
 <p>霸气的把length=0化了线zhuai给他。JSer们并不怎么用这个奇怪的写法是有原因的啊。length=0了你要我们怎么办！.pop()和.shift()等作用于数组元素的方法你要我们怎么用？恩？</p>
 <p>再者，如果不是 === 的情况下，JS很难分清’1’和1有什么区别。所以如果你的下标突然变成了一个字符串数字就有意思了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let a=[];</div><div class="line">a[&apos;aa&apos;]=&apos;bb&apos;;</div><div class="line">a[&apos;100&apos;]=&apos;vvvvv&apos;;</div><div class="line">console.log(a.length);</div><div class="line">//100</div></pre></td></tr></table></figure></p>
 <p>就是这么神奇。js表示’100’和100长得一样啊并没有区别啊那个引号是什么我读书少你别骗我。所以这个时候js会自动把a[‘100’]当成a[100]来使用，创建一个长度为100的Array，哪怕真实长度只有2……<br>当给一个js数组添加字符串下标的时候，就相当于为该数组对象添加了一个自定义属性，这就是所谓的“字符串下标”。而为数组添加属性并不会增加数组长度，所以长度不会发生改变了。你到是能用key找到这个value，但是你并没有办法遍历它。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a.forEach(v=&gt;console.log(v))</div><div class="line">//&apos;vvvvv&apos;</div></pre></td></tr></table></figure></p>
-<p>看你只能得到后来增加的那个index为100的’dd’。</p>
+<p>看你只能得到后来增加的那个index为100的’vvvvv’。</p>
 <p>所以呢，来自stackoverflow的Michael Berkowski：“如果要使用的是一个完全由’字符串下标’组成的数组，那还是将其声明为一个Object类型的对象要更好一些。”</p>
 <p>对啊，有对象干嘛还要找数组！数组长得比对象美吗！口亨！</p>
 
@@ -174,7 +174,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2017/06/16/arrayindex/" data-id="cj3zpipgs00017kk0dfl69wq3" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+    <a data-url="http://yoursite.com/2017/06/16/arrayindex/" data-id="cj3zpk9rf000154k0imk0tgiv" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
